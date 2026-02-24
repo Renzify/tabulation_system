@@ -23,7 +23,6 @@ function RankingPage() {
     <div className="flex flex-col h-screen justify-start items-center bg-gray-100">
       <h1 className="text-6xl font-bold my-15">Ranking Page</h1>
       <div className="w-[600px] bg-white p-8 rounded-2xl shadow-lg">
-        {/* H1 ON TOP */}
         <h2 className="text-3xl font-bold mb-6 text-center">Final Ranking</h2>
 
         {ranking.length === 0 ? (
