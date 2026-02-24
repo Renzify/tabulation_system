@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 function ScoreTable() {
+  // Criteria array
   const criteria = [
     { id: 1, name: "Performance", weight: 0.4, max: 100 },
     { id: 2, name: "Creativity", weight: 0.3, max: 100 },
@@ -41,7 +42,7 @@ function ScoreTable() {
       .toFixed(2);
   };
 
-  // Add contestant (NEW ON TOP ✅)
+  // Add contestant
   const addContestant = () => {
     if (!newContestant.trim()) return;
 
@@ -92,7 +93,7 @@ function ScoreTable() {
     };
 
     try {
-      // ⚠️ IMPORTANT: backend is on PORT 3000
+      // Post data to backend
       const response = await fetch("http://localhost:3000/api/scores", {
         method: "POST",
         headers: {
@@ -116,7 +117,7 @@ function ScoreTable() {
       <div className="w-[90vw] bg-white p-8 rounded-2xl shadow-lg">
         <h2 className="text-2xl font-bold mb-6">Contestant Score Table</h2>
 
-        {/* ADD CONTESTANT SECTION */}
+        {/* Add contestant section */}
         <div className="mb-6 flex gap-2">
           <input
             type="text"
@@ -134,7 +135,7 @@ function ScoreTable() {
           </button>
         </div>
 
-        {/* GRID */}
+        {/* Score grid */}
         <div
           className="grid gap-4 items-center"
           style={{
@@ -156,7 +157,7 @@ function ScoreTable() {
 
           {contestants.map((contestant) => (
             <div key={contestant.id} className="contents">
-              {/* NAME + DELETE */}
+              {/* Contestant name field */}
               <div className="flex items-center justify-between">
                 <span className="font-medium">{contestant.name}</span>
                 <button
