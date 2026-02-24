@@ -1,11 +1,11 @@
 import express from "express";
-import dotenv from "dotenv";
 import cors from "cors";
 import usersRoute from "./routes/usersRoute.js";
 import { ENV } from "./lib/env.js";
+import pool from "./lib/db.js";
 
 const app = express();
-
+const result = await pool.query("SELECT NOW()");
 const { PORT } = ENV;
 
 // Middleware
