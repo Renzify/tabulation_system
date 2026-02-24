@@ -1,13 +1,25 @@
 import express from "express";
-import { ENV } from "./lib/env.js";
-import pool from "./lib/db.js";
+import dotenv from "dotenv";
+import cors from "cors";
+import usersRoute from "./routes/usersRoute.js";
+
+dotenv.config();
 
 const app = express();
 
-const { PORT } = ENV;
-const result = await pool.query("SELECT NOW()");
+// Middleware
+app.use(cors());
+app.use(express.json());
+app.use((req, res, next) => {
+  console.log("Req method: " + req.method + " & req location: " + req.url);
+  next();
+});
+
+// Routes
+app.use("/api", usersRoute);
+
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-  console.log("Server is running in port:", PORT);
-  console.log("Connected! Current time:", result.rows[0].now);
+  console.log(`Server running on port ${PORT}`);
 });
