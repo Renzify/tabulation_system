@@ -2,10 +2,11 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import usersRoute from "./routes/usersRoute.js";
-
-dotenv.config();
+import { ENV } from "./lib/env.js";
 
 const app = express();
+
+const { PORT } = ENV;
 
 // Middleware
 app.use(cors());
@@ -18,8 +19,5 @@ app.use((req, res, next) => {
 // Routes
 app.use("/api", usersRoute);
 
-const PORT = process.env.PORT || 3000;
-
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+  console.log("Server is running in port:", PORT);
