@@ -5,33 +5,29 @@ const router = express.Router();
 // Temporary memory storage
 let submissions = [];
 
-/*
-  POST /api/scores
-  Receives scores from frontend
-*/
-router.post("/scores", (req, res) => {
-  const { criteria, contestants } = req.body;
 
-  if (!criteria || !contestants) {
+// Receive scores from frontend
+router.post("/scores", (req, res) => {             // post route
+  const { criteria, contestants } = req.body;     // destructure input json
+
+  if (!criteria || !contestants) {    // check if input has no value
     return res.status(400).json({
       message: "Invalid payload",
     });
   }
 
-  submissions = contestants;
+  submissions = contestants;    // store input value to submission array
 
   res.status(200).json({
     message: "Scores stored successfully",
   });
 });
 
-/*
-  GET /api/ranking
-  Returns contestants sorted by total descending
-*/
-router.get("/ranking", (req, res) => {
-  const ranked = [...submissions].sort((a, b) => b.total - a.total);
+
+router.get("/ranking", (req, res) => {              // get route
+  const ranked = [...submissions].sort((a, b) => b.total - a.total);   // Return contestants sorted by total descending order
 
   res.status(200).json(ranked);
 });
+
 export default router;

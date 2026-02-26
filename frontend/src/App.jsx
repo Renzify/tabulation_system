@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router";
-import HomePage from "../pages/HomePage.jsx";
-import RankingPage from "../pages/RankingPage.jsx";
+import HomePage from "./pages/HomePage.jsx";
+import RankingPage from "./pages/RankingPage.jsx";
 
 function App() {
   return (
